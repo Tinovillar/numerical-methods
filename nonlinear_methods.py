@@ -15,6 +15,7 @@ def newton_method(fnc, x0, iterations, tolerance):
         x_next = x_prev - (fnc(x_prev) / derive(fnc, x_prev))
         error = (x_next - x_prev) / x_next
         x_prev = x_next
+        current_iterations += 1
     return x_prev
 
 
