@@ -1,4 +1,4 @@
-def regula_falsi_method(fnc, x0, x1, iterations, tolerance):
+def regula_falsi_method(fnc, x0, x1, tolerance=0.0005, iterations=10):
     current_iteration = 1
     error = 1
     while error > tolerance and current_iteration < iterations:
@@ -11,7 +11,7 @@ def regula_falsi_method(fnc, x0, x1, iterations, tolerance):
         current_iteration += 1
 
 
-def bisection_method(fnc, x_left, x_right, iterations, tolerance):
+def bisection_method(fnc, x_left, x_right, tolerance=0.0005, iterations=10):
     if fnc(x_left) * fnc(x_right) < 0:
         current_iteration = 1
         error = 1
@@ -28,7 +28,7 @@ def bisection_method(fnc, x_left, x_right, iterations, tolerance):
         return (x_left + x_right) / 2
 
 
-def secant_method(fnc, x0, x1, iterations, tolerance):
+def secant_method(fnc, x0, x1, tolerance=0.0005, iterations=10):
     current_iteration = 1
     error = 1
     while error > tolerance and current_iteration < iterations:
@@ -40,12 +40,12 @@ def secant_method(fnc, x0, x1, iterations, tolerance):
     return x1
 
 
-def newton_method(fnc, x0, iterations, tolerance):
+def newton_method(fnc, x0, multiplicity=1, tolerance=0.0005, iterations=10):
     x_prev = x0
     current_iteration = 1
     error = 1
     while (error > tolerance) and (current_iteration < iterations) and (derive(fnc, x_prev) != 0):
-        x_next = x_prev - (fnc(x_prev) / derive(fnc, x_prev))
+        x_next = x_prev - multiplicity * (fnc(x_prev) / derive(fnc, x_prev))
         error = abs((x_next - x_prev) / x_next)
         x_prev = x_next
         current_iteration += 1
