@@ -40,12 +40,12 @@ def secant_method(fnc, x0, x1, tolerance=0.0005, iterations=10):
     return x1
 
 
-def newton_method(fnc, x0, multiplicity=1, tolerance=0.0005, iterations=10):
+def newton_method(fnc, x0, root_multiplicity=1, tolerance=0.0005, iterations=10):
     x_prev = x0
     current_iteration = 1
     error = 1
     while (error > tolerance) and (current_iteration < iterations) and (derive(fnc, x_prev) != 0):
-        x_next = x_prev - multiplicity * (fnc(x_prev) / derive(fnc, x_prev))
+        x_next = x_prev - root_multiplicity * (fnc(x_prev) / derive(fnc, x_prev))
         error = abs((x_next - x_prev) / x_next)
         x_prev = x_next
         current_iteration += 1
