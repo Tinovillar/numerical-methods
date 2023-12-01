@@ -1,4 +1,14 @@
-def regula_falsi_method():
+def regula_falsi_method(fnc, x0, x1, iterations, tolerance):
+    current_iteration = 1
+    error = 1
+    while error > tolerance and current_iteration < iterations:
+        x2 = x1 - ((fnc(x1) * (x1 - x0)) / (fnc(x1) - fnc(x0)))
+        error = abs(x1 - x0)
+        if fnc(x0) * fnc(x2) > 0:
+            x0 = x2
+        elif fnc(x1) * fnc(x2) > 0:
+            x1 = x2
+        current_iteration += 1
 
 
 def bisection_method(fnc, x_left, x_right, iterations, tolerance):
@@ -15,17 +25,17 @@ def bisection_method(fnc, x_left, x_right, iterations, tolerance):
                 x_right = x_middle
             error = (x_right - x_left) / 2
             current_iteration += 1
-        return (x_left + x_right)/2
+        return (x_left + x_right) / 2
 
 
 def secant_method(fnc, x0, x1, iterations, tolerance):
     current_iteration = 1
     error = 1
     while error > tolerance and current_iteration < iterations:
-        x2 = x1 - fnc(x1) * ( (x1-x0) / (fnc(x1) - fnc(x0)) )
+        x2 = x1 - fnc(x1) * ((x1 - x0) / (fnc(x1) - fnc(x0)))
         x0 = x1
         x1 = x2
-        error = abs((x1 - x0)/x1)
+        error = abs((x1 - x0) / x1)
         current_iteration += 1
     return x1
 
